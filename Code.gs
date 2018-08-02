@@ -18,6 +18,7 @@ function addData() {
     while ( fileParents.hasNext() ) {
       var parentfolder = fileParents.next();
     }
+  //edit this variable if your files arent being found
   var searchTerm = "mimeType = 'text/csv'";
   //looking for files with .txt or .csv
   
@@ -43,7 +44,10 @@ function addData() {
     csvFile = file.getBlob().getDataAsString();
       // parse data as csv w/ tab deliminators
       // parseCsv will return a [][] array we can write to a sheet
-    var csvData = Utilities.parseCsv(csvFile, '\t');
+      // edit the \t if you do not want 
+    var csvData = Utilities.parseCsv(csvFile);
+      //use the folowing line for TSV data
+      //var csvData = Utilities.parseCsv(csvFile, '\t');
     lastSheet.getRange(1, 1, csvData.length, csvData[0].length).setValues(csvData); 
   }
 }
